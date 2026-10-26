@@ -1,0 +1,25 @@
+﻿Título de la nota,Comprensión,Concepto clave,Curso,Dificultad,Enlace al recurso,Estado,Etiquetas,Fecha de revisión,Fragmento de código,Idioma,Prioridad del estudio,Tema
+Redes informáticas,3 - Intermedio,Sin contenido,Redes,Difícil,,,Preparación de exámenes,26 de marzo de 2026,,JavaScript,Low,Algoritmos de búsqueda
+Programación orientada a objetos,1 - Básico,Sin contenido,Programación,Difícil,,,Ordenación,8 de abril de 2025,,,Low,Modelado de datos
+Normalización de bases de datos,2 - Básico,"El curso sobre bases de datos se centra en el modelado de datos y presenta un nivel de dificultad elevado. Se proporciona un fragmento de código para crear una tabla «Estudiantes», que incluye campos para el ID de estudiante, el nombre y el ID de departamento. El nivel de comprensión es básico, y la fecha de revisión está fijada para el 11 de abril de 2025.",Bases de datos,Medio,,En curso,Preparación de exámenes,11 de abril de 2025,"CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    department_id INT FOREIGN KEY
+);",N/A,Low,Modelado de datos
+Protocolos TCP/IP,2 - Básico,Sin contenido,Estructuras de datos,Difícil,,,Depuración,19 de febrero de 2026,,Java,Low,Estructuras de datos en árbol
+Recorrido recursivo de un árbol,1 - Básico,"Fragmento de código en C++ para el recorrido recursivo en orden de un árbol, con un nivel de dificultad medio, que requiere conocimientos básicos, y con fecha de revisión fijada para el 10 de abril de 2025.",Estructuras de datos,Medio,,Por estudiar,Prácticas,10 de abril de 2025,"void inorderTraversal(Node* root) {
+    if (root != nullptr) {
+        inorderTraversal(root->left);
+        cout << root->data << "" "";
+        inorderTraversal(root->right);
+    }
+}",C++,Low,Estructuras de datos en árbol
+Principios de los sistemas operativos,4 - Avanzado,Sin contenido,Redes,Fácil,,,Prácticas,27 de septiembre de 2025,,Java,Low,
+Algoritmo de búsqueda binaria,1 - Básico,"El algoritmo de búsqueda binaria en Python busca de forma eficiente un valor objetivo en una matriz ordenada dividiendo repetidamente el intervalo de búsqueda por la mitad. Si se encuentra el valor objetivo, devuelve el índice; en caso contrario, devuelve -1. El nivel de comprensión es básico, con una fecha de revisión fijada para el 13 de abril de 2025.",Algoritmos,Difícil,,Entendido,Prácticas,13 de abril de 2025,"def búsqueda_binaria(arr, valor_objetivo):
+    izquierda, derecha = 0, len(arr)-1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target: return mid
+        elif arr[mid] < target: left = mid + 1
+        else: right = mid - 1
+    return -1",Python,Low,Algoritmos de búsqueda
