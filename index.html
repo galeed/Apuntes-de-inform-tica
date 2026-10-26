@@ -1,0 +1,811 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Apuntes del curso de Informática</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="8b0cc12e-0625-82fa-a67b-01be30f5f821" class="page sans" data-notion-page-icon="attachment:264868b4-54f2-4dc5-9201-328d6be3d36a:Computer_Science_Course_Notes_-_Icon.png"><header><img class="page-cover-image" src="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Computer_Science_Course_Notes_-_BG.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Computer_Science_Course_Notes_-_Icon.png"/></div><h1 class="page-title" dir="auto">Apuntes del curso de Informática</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div id="825cc12e-0625-83ba-99b3-81f3bfb52cca" class="collection-content" dir="ltr"><h4 class="collection-title">Apuntes del curso de Informática</h4><div class="collection-content-wrapper"><table class="collection-content"><colgroup><col style="width:31.818181818181817%"/><col style="width:22.727272727272727%"/><col style="width:22.727272727272727%"/><col style="width:22.72727272727272%"/></colgroup><thead><tr><th><span class="icon property-icon"><img src="https://app.notion.com/icons/font_gray.svg" style="width:14px;height:14px;display:block"/></span>Título de la nota</th><th><span class="icon property-icon"><img src="https://app.notion.com/icons/brain_gray.svg" style="width:14px;height:14px;display:block"/></span>Comprensión</th><th><span class="icon property-icon"><img src="https://app.notion.com/icons/star-half_gray.svg" style="width:14px;height:14px;display:block"/></span>Dificultad</th><th><span class="icon property-icon"><img src="https://app.notion.com/icons/calendar_gray.svg" style="width:14px;height:14px;display:block"/></span>Fecha de revisión</th></tr></thead><tbody><tr id="14ecc12e-0625-8317-9077-01c0d612731e"><td class="cell-title"><a href="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Principios%20de%20los%20sistemas%20operativos%2014ecc12e06258317907701c0d612731e.html" data-notion-page-id="14ecc12e-0625-8317-9077-01c0d612731e" data-notion-space-id="43fcc12e-0625-81be-80d8-000379aed5dd"><img class="icon notion-static-icon" src="https://app.notion.com/icons/computer_gray.svg"/>Principios de los sistemas operativos</a></td><td class="cell-gAuP"><span class="selected-value select-value-color-blue">4 - Avanzado</span></td><td class="cell-tGhT"><span class="selected-value select-value-color-green">Fácil</span></td><td class="cell-&lt;`RY"><time datetime="2025-09-27">27 de septiembre de 2025</time></td></tr><tr id="101cc12e-0625-83d4-aa66-81a0816190cc"><td class="cell-title"><a href="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Redes%20inform%C3%A1ticas%20101cc12e062583d4aa6681a0816190cc.html" data-notion-page-id="101cc12e-0625-83d4-aa66-81a0816190cc" data-notion-space-id="43fcc12e-0625-81be-80d8-000379aed5dd"><img class="icon notion-static-icon" src="https://app.notion.com/icons/computer_gray.svg"/>Redes informáticas</a></td><td class="cell-gAuP"><span class="selected-value select-value-color-yellow">3 - Intermedio</span></td><td class="cell-tGhT"><span class="selected-value select-value-color-red">Difícil</span></td><td class="cell-&lt;`RY"><time datetime="2026-03-26">26 de marzo de 2026</time></td></tr><tr id="61acc12e-0625-828b-82cb-810bbeb749bd"><td class="cell-title"><a href="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Recorrido%20recursivo%20de%20un%20%C3%A1rbol%2061acc12e0625828b82cb810bbeb749bd.html" data-notion-page-id="61acc12e-0625-828b-82cb-810bbeb749bd" data-notion-space-id="43fcc12e-0625-81be-80d8-000379aed5dd"><img class="icon notion-static-icon" src="https://app.notion.com/icons/computer_gray.svg"/>Recorrido recursivo de un árbol</a></td><td class="cell-gAuP"><span class="selected-value select-value-color-red">1 - Básico</span></td><td class="cell-tGhT"><span class="selected-value select-value-color-yellow">Medio</span></td><td class="cell-&lt;`RY"><time datetime="2025-04-10">10 de abril de 2025</time></td></tr><tr id="942cc12e-0625-8385-bdc6-81b18c828c9a"><td class="cell-title"><a href="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Protocolos%20TCP%20IP%20942cc12e06258385bdc681b18c828c9a.html" data-notion-page-id="942cc12e-0625-8385-bdc6-81b18c828c9a" data-notion-space-id="43fcc12e-0625-81be-80d8-000379aed5dd"><img class="icon notion-static-icon" src="https://app.notion.com/icons/computer_gray.svg"/>Protocolos TCP/IP</a></td><td class="cell-gAuP"><span class="selected-value select-value-color-orange">2 - Básico</span></td><td class="cell-tGhT"><span class="selected-value select-value-color-red">Difícil</span></td><td class="cell-&lt;`RY"><time datetime="2026-02-19">19 de febrero de 2026</time></td></tr><tr id="d55cc12e-0625-8360-b44c-8136dc2488b8"><td class="cell-title"><a href="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Programaci%C3%B3n%20orientada%20a%20objetos%20d55cc12e06258360b44c8136dc2488b8.html" data-notion-page-id="d55cc12e-0625-8360-b44c-8136dc2488b8" data-notion-space-id="43fcc12e-0625-81be-80d8-000379aed5dd"><img class="icon notion-static-icon" src="https://app.notion.com/icons/computer_gray.svg"/>Programación orientada a objetos</a></td><td class="cell-gAuP"><span class="selected-value select-value-color-red">1 - Básico</span></td><td class="cell-tGhT"><span class="selected-value select-value-color-red">Difícil</span></td><td class="cell-&lt;`RY"><time datetime="2025-04-08">8 de abril de 2025</time></td></tr><tr id="0cdcc12e-0625-836f-bc9a-81dba03565e2"><td class="cell-title"><a href="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Normalizaci%C3%B3n%20de%20bases%20de%20datos%200cdcc12e0625836fbc9a81dba03565e2.html" data-notion-page-id="0cdcc12e-0625-836f-bc9a-81dba03565e2" data-notion-space-id="43fcc12e-0625-81be-80d8-000379aed5dd"><img class="icon notion-static-icon" src="https://app.notion.com/icons/computer_gray.svg"/>Normalización de bases de datos</a></td><td class="cell-gAuP"><span class="selected-value select-value-color-orange">2 - Básico</span></td><td class="cell-tGhT"><span class="selected-value select-value-color-yellow">Medio</span></td><td class="cell-&lt;`RY"><time datetime="2025-04-11">11 de abril de 2025</time></td></tr><tr id="15bcc12e-0625-8303-932e-81de511a04f1"><td class="cell-title"><a href="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Algoritmo%20de%20b%C3%BAsqueda%20binaria%2015bcc12e06258303932e81de511a04f1.html" data-notion-page-id="15bcc12e-0625-8303-932e-81de511a04f1" data-notion-space-id="43fcc12e-0625-81be-80d8-000379aed5dd"><img class="icon notion-static-icon" src="https://app.notion.com/icons/computer_gray.svg"/>Algoritmo de búsqueda binaria</a></td><td class="cell-gAuP"><span class="selected-value select-value-color-red">1 - Básico</span></td><td class="cell-tGhT"><span class="selected-value select-value-color-red">Difícil</span></td><td class="cell-&lt;`RY"><time datetime="2025-04-13">13 de abril de 2025</time></td></tr></tbody></table></div><br/><br/></div><p id="5e5cc12e-0625-83b9-91bf-01a575b6bd39" class="" dir="auto">
+</p><p id="247cc12e-0625-83c9-b7bd-01696dd9d696" class="" dir="auto">
+</p><p id="46fcc12e-0625-825f-bff0-0121138777ef" class="" dir="auto">
+</p><aside class="callout" data-notion-callout="" data-notion-callout-icon="⚫" style="white-space:pre-wrap;display:flex" id="b6acc12e-0625-83cb-b392-8128f39f91e8" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="⚫"></span></div><div style="width:100%"><strong>¡Hola!</strong> 👋🏼<div id="243cc12e-0625-8386-a9cd-017d69ee7766" class="column-list" data-notion-column-list="" dir="auto"><div id="ef0cc12e-0625-826b-b015-010f7db6ba26" style="width:25%" class="column" data-notion-column-ratio="0.25" dir="auto"><p id="baccc12e-0625-820b-a183-81156a26638f" class="" dir="auto">
+</p><figure id="d79cc12e-0625-83fc-9100-01ce99dd9df8" class="image" data-notion-image="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Pugos_Studio_-_Fav2x.jpg" dir="ltr"><a href="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Pugos_Studio_-_Fav2x.jpg"><img style="width:244.90000915527344px" src="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Pugos_Studio_-_Fav2x.jpg"/></a></figure><p id="b6fcc12e-0625-8368-a8fb-8159eaad37a6" class="" dir="auto">
+</p><p id="665cc12e-0625-82ea-bec6-011a931b5dce" class="" dir="auto">
+</p></div><div id="6c7cc12e-0625-8267-92b9-01866b360f48" style="width:75%" class="column" data-notion-column-ratio="0.75" dir="auto"><p id="ac9cc12e-0625-8318-b267-01573883ab40" class="" dir="auto">Soy el Sr. Pugo, el creador de esta plantilla de Notion y de muchas otras plantillas geniales de Notion, además de otras cosas interesantes. Me encanta sistematizarlo todo para poder centrarme en lo que realmente importa —en lugar de estar haciendo un seguimiento, organizando y buscando cosas— y eso es precisamente en lo que quiero ayudarte a ti también.</p><p id="cfdcc12e-0625-8280-a9a1-01bac7e90434" class="" dir="auto">
+</p><p id="af4cc12e-0625-8244-ab77-011bca731d78" class="" dir="auto">Echa un vistazo a los sistemas que utilizo a diario para gestionar toda mi vida y mis negocios, todo ello en Notion: <a href="https://nimblegot.com/super-life/">«Super Life</a> + <a href="https://nimblegot.com/notion-second-brain/">Super Brain»</a> para una organización y productividad máximas, y <a href="https://nimblegot.com/business-hub/">«Business Hub</a> » para gestionar y hacer crecer 13 negocios con facilidad. ¡No te los pierdas!</p><p id="47acc12e-0625-835f-9737-0173b9b55292" class="" dir="auto">
+</p><p id="b2fcc12e-0625-83a5-9283-01228ab2cec0" class="" dir="auto">Si buscas específicamente plantillas de Notion, dirígete a <strong><a href="https://nimblegot.com">NimbleGot</a></strong> para encontrar las que necesitas. Si quieres ver todos mis proyectos, productos estrella y cursos, visita <strong><a href="https://pugo.studio">Pugo’s Studio</a></strong><strong>.</strong></p><p id="4abcc12e-0625-82a2-a87e-01fbdd6bcade" class="" dir="auto">
+</p><p id="bbfcc12e-0625-8238-9121-01228ce7156d" class="" dir="auto">Avísame si necesitas ayuda con esta plantilla o si quieres sistematizar cualquier aspecto de tu vida o tu negocio, y lo añadiré a mi lista de productos pendientes para desarrollarlo.</p><p id="513cc12e-0625-83f8-a35c-010da2311c57" class="" dir="auto">
+</p><p id="2d9cc12e-0625-8371-89f0-01ed1e693837" class="" dir="auto">Por <strong><a href="https://www.instagram.com/mr.pugo/">Mr. Pugo</a></strong> a través de <strong><a href="https://nimblegot.com">NimbleGot</a></strong><strong> </strong> y <strong><a href="https://pugo.studio">Pugo’s Studio</a></strong></p><p id="586cc12e-0625-82ee-995c-01f347fdb4d9" class="" dir="auto">
+</p><hr id="245cc12e-0625-82a6-a8da-81fb96f95d23" dir="auto"/><p id="a3dcc12e-0625-8211-8fe4-01cb6f49e058" class="" dir="auto">
+</p><p id="2d3cc12e-0625-825b-a4e9-819f2cc916b8" class="" dir="auto">🙌🏻 Mantente conectado con NimbleGot en <strong><a href="https://www.instagram.com/notiongot/">Instagram</a></strong> y <strong><a href="https://www.youtube.com/@Nimblegot">YouTube</a></strong></p></div></div><p id="f2ecc12e-0625-83e4-b4b6-8146f653793a" class="" dir="auto">
+</p></div></aside><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="947cc12e-0625-82af-9f65-812c72a523eb" dir="ltr"><div style="width:100%"><h1 id="f8acc12e-0625-83e9-965d-018a3584f562" class="" dir="auto">Mis sistemas más potentes y completos para la vida y los negocios</h1><p id="795cc12e-0625-83c3-b2af-019b6618e8b1" class="" dir="auto">Estos son los sistemas que utilizo a diario para gestionar mi vida y mi mente, hacer crecer mis negocios y todo lo demás.</p><p id="e31cc12e-0625-8335-893d-01c25298737f" class="" dir="auto">
+</p></div></aside><details open="" class="" dir="auto"><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><h2 id="621cc12e-0625-8380-bbe6-81c89c2b40b9" style="display:inline-block">Need something custom for your team?</h2></summary><div class="indented"><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="541cc12e-0625-83e1-90e5-011a77f5b6b6" dir="ltr"><div style="width:100%"><p id="cbecc12e-0625-8314-b89d-8125a14d4dd8" class="" dir="auto">If your business needs specific workflows, integrations, or a Notion setup tailored to your team, I now offer custom builds through <strong>Systems Joy</strong> too.</p><div id="42ecc12e-0625-8395-9e39-0128d587fccd" class="column-list" data-notion-column-list="" dir="auto"><div id="768cc12e-0625-828d-83bd-81c3cc51af14" style="width:60%" class="column" data-notion-column-ratio="0.6" dir="auto"><aside class="callout" data-notion-callout="" style="white-space:pre-wrap;display:flex" id="d31cc12e-0625-83d6-a256-81f046e3ec71" dir="ltr"><div style="width:100%"><figure id="dcacc12e-0625-8283-9be5-81506d5f872d" class="image" data-notion-image="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Systems_Joy__Connected_business_workspace.png" dir="ltr"><a href="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Systems_Joy__Connected_business_workspace.png"><img src="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Systems_Joy__Connected_business_workspace.png"/></a></figure></div></aside></div><div id="e4acc12e-0625-8264-9b6f-813cdcd192b3" style="width:40%" class="column" data-notion-column-ratio="0.4" dir="auto"><p id="b38cc12e-0625-835e-85ad-814b6c6eaf72" class="" dir="auto"><strong>Built around how your business works.</strong></p><p id="8a6cc12e-0625-83e1-8e1b-81240f117954" class="" dir="auto">From one team’s workflow to company-wide operations. Projects, dashboards, SOPs, and useful automations, with documentation and handover included.</p><p id="979cc12e-0625-8216-9cb7-81b38041ab93" class="" dir="auto">For startups, growing teams, and established companies.</p></div></div><p id="bb4cc12e-0625-83d9-aa29-81152cc3abc6" class="" dir="auto"><strong>1M+ template downloads · 30K+ five-star reviews · 4.9 average rating</strong></p><aside class="callout" data-notion-callout="" data-notion-callout-icon="🏅" style="white-space:pre-wrap;display:flex" id="a69cc12e-0625-834b-b25b-8188f82d4254" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="🏅"></span></div><div style="width:100%"><p id="885cc12e-0625-83ab-90b6-01577d0da13e" class="" dir="auto"><strong>Credentials &amp; recognition</strong></p><figure id="13dcc12e-0625-8343-9b10-01cc69aed9d0" class="image" data-notion-image="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Systems_Joy_-_Notion_Badges2.png" dir="ltr"><a href="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Systems_Joy_-_Notion_Badges2.png"><img src="Apuntes%20del%20curso%20de%20Inform%C3%A1tica/Systems_Joy_-_Notion_Badges2.png"/></a></figure></div></aside><p id="8e0cc12e-0625-834a-b3fe-8168386bfd5d" class="" dir="auto"><strong><a href="https://systemjoy.co">Explore Systems Joy &amp; book a free discovery call →</a></strong></p></div></aside></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
